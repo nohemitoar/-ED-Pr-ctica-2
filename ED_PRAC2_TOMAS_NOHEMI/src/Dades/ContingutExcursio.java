@@ -3,21 +3,21 @@ package Dades;
 import Classes.*;
 import Llistes.*;
 
-public class ContingutExcursio implements TADMultillistaGenerica<Activitat, Excursio>{
-	private int codiAct, codiExc;
-
+public class ContingutExcursio {
+	private LlistaGenerica<Activitat>[] ll_act;
+	private Excursio excursio;
+	private int codiExc, codiAct;
 	
-	public ContingutExcursio (int codiAct, int codiExc) {
+	public ContingutExcursio (int codiExc, int codiAct) {
 		this.codiAct=codiAct;
 		this.codiExc=codiExc;
+		
 	}
 	
-	public int getCodiAct() {
-		return codiAct;
+	public float importTotal() {
+		float preuTotal=0;
+		return preuTotal;
 	}
 	
-	public int getCodiExc() {
-		return codiExc;
-	}
 
 }

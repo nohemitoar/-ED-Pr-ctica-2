@@ -1,6 +1,9 @@
 package Classes;
 
+import Llistes.*;
+
 public class Excursio implements Comparable<Excursio>{
+	private LlistaGenerica<Activitat>[] ll_act;
 	private int codi;
 	private String nom; 
 	
@@ -15,6 +18,10 @@ public class Excursio implements Comparable<Excursio>{
 
 	public String getNom() {
 		return nom;
+	}
+	
+	public LlistaGenerica<Activitat>[] getLl_act(){
+		return ll_act;
 	}
 
 	@Override

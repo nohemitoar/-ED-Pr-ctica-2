@@ -9,7 +9,7 @@ public interface TADLlistaGenerica<E> extends Iterable<E> {
 	 * @param e element a inserir
 	 * @throws LlistaPlena excepcio
 	 */
-	public void inserir (E e) throws LlistaPlena;
+	public boolean inserir (E e) throws LlistaPlena;
 	
 	/**
 	 * Metode que serveix per consultar un element de la llista
@@ -17,7 +17,7 @@ public interface TADLlistaGenerica<E> extends Iterable<E> {
 	 * @return el element
 	 * @throws LlistaBuida excepcio
 	 */
-	public E[] consultar(int id) throws LlistaBuida;
+	public E consultar(int ind) throws LlistaBuida;
 	
 	/**
 	 * Metode que serveix per esborrar un element de la llista
@@ -28,22 +28,22 @@ public interface TADLlistaGenerica<E> extends Iterable<E> {
 	public boolean esborrarElement (E e) throws LlistaBuida;
 	
 	/**
-	 * Metode que serveix per saber si exsisteix el element
-	 * @param e element a comprovar
-	 * @return el element
+	 * Metode per saber si existeix un element
+	 * @param e element a buscar
+	 * @return element
 	 */
-	public E existeix(E e);
-	
-	/**
-	 * Metode que serveix per saber si la llista es plena
-	 * @return false perque es dinamica
-	 */
-	public boolean esPlena();
-	
+	public boolean existeixElement (E e);
 	/**
 	 * Metode que serveix per saber si la llista es buida
 	 * @return si es buida o no
 	 */
 	public boolean esBuida();
+	
+	/**
+	 * Metode que retorna el numero d'elements totals que 
+	 * hi ha en la llista
+	 * @return numero total
+	 */
+	public int getNumEle();
 
 }

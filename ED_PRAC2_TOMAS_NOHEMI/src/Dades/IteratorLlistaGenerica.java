@@ -2,25 +2,34 @@ package Dades;
 
 import java.util.Iterator;
 
-public class IteratorLlistaGenerica<E> implements Iterator<E> {
+import Excepcions.LlistaBuida;
+import Llistes.LlistaGenerica;
+
+public class IteratorLlistaGenerica<E extends Comparable<E>> implements Iterator<E> {
+	private LlistaGenerica<E> ll;
+	private int index;
 	
-	private Node<E> actual, ultim;
-	
-	public IteratorLlistaGenerica(Node<E> primer, Node<E> ultim){
-		this.ultim = ultim;
-		actual = primer;
+	public IteratorLlistaGenerica(LlistaGenerica<E> ll){
+		this.ll=ll;
+		index=0;
 	}
 
 	@Override
 	public boolean hasNext(){
-		return (ultim.getSeg() != actual);
+		return (index<ll.getNumEle());
 	}
 
 	@Override
 	public E next() {
-		Node<E> aux = actual;
-		actual = actual.getSeg();
-		return aux.getElement();
+		E aux = null;
+		try {
+			aux = ll.consultar(index);
+		} catch (LlistaBuida e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		index++;
+		return aux;
 	}
 
 }

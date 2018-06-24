@@ -4,9 +4,9 @@ public class Node<E> {
 	private E element;
 	private Node<E> seg;
 	
-	public Node(E e) {
+	public Node(E e, Node<E> seg) {
 		element=e;
-		seg=null;
+		this.seg=seg;
 	}
 
 	public E getElement() {

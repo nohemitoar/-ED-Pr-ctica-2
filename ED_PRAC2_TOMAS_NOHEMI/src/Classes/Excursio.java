@@ -1,9 +1,6 @@
 package Classes;
 
-import Llistes.*;
-
 public class Excursio implements Comparable<Excursio>{
-	private LlistaGenerica<Activitat>[] ll_act;
 	private int codi;
 	private String nom; 
 	
@@ -20,10 +17,6 @@ public class Excursio implements Comparable<Excursio>{
 		return nom;
 	}
 	
-	public LlistaGenerica<Activitat>[] getLl_act(){
-		return ll_act;
-	}
-
 	@Override
 	public String toString() {
 		return "Excursio [codi=" + codi + ", nom=" + nom + "]";
@@ -34,11 +27,13 @@ public class Excursio implements Comparable<Excursio>{
 	}
 
 	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
+	@Override
 	public int compareTo(Excursio e) {
 		// TODO Auto-generated method stub
 		return nom.compareTo(e.nom);
 	}
-	
-	
-	
 }

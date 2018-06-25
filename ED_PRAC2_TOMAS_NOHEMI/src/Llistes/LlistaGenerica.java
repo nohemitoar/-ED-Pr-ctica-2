@@ -20,7 +20,7 @@ public class LlistaGenerica<E extends Comparable<E>> implements TADLlistaGeneric
 			num++;
 			hiCap=true;
 			
-		} else if (primer.getElement().compareTo(e) != 0){
+		} else if (primer.getElement().compareTo(e) != 0) {
 		
 			Node<E> nodeNou ;
 			Node<E> nodeActual = primer;
@@ -31,7 +31,7 @@ public class LlistaGenerica<E extends Comparable<E>> implements TADLlistaGeneric
 				primer = nodeNou;
 				num++;
 				hiCap=true;
-			} else{
+			} else {
 				nodeAnterior = nodeActual;
 				nodeActual = nodeAnterior.getSeg();
 				while ((nodeActual!=null) && (nodeActual.getElement().compareTo(e) <= 0)) {
@@ -47,20 +47,26 @@ public class LlistaGenerica<E extends Comparable<E>> implements TADLlistaGeneric
 			}
 		}
 		return hiCap;
+		/*if(existeixElement(e)) return false;
+		if(esBuida()||primer.getElement().compareTo(e) > 0) primer = new Node<>(e, primer);
+		else {
+			Node<E> aux = primer;
+			while (aux.getSeg()!=null && aux.getSeg().getElement().compareTo(e) < 0) aux=aux.getSeg();
+			aux.setSeg(new Node<>(e, aux.getSeg()));
+		}
+		num++;
+		return true;*/
 	}
 	
 	public E consultar(int index) throws LlistaBuida{
 		if (esBuida()) throw new LlistaBuida();
 		
 		Node<E> nodeActual = primer;
-		E eActual = null;
 		
 		if(index < getNumEle()){
-			for (int i=0; i<index; i++) nodeActual=nodeActual.getSeg();
-			eActual=nodeActual.getElement();
+			for (int i=0; i<index; i++)	nodeActual=nodeActual.getSeg();
 		}
-		
-		return eActual;
+		return nodeActual.getElement();
 	}
 	
 	public boolean esborrarElement (E e) throws LlistaBuida {
@@ -110,6 +116,35 @@ public class LlistaGenerica<E extends Comparable<E>> implements TADLlistaGeneric
 		return existeix;
 	}
 	
+	public int getIndex(E e) {
+		int ind=0;
+		Node<E> aux = primer;
+		while (aux != null && !aux.getElement().equals(e)) {
+			aux=aux.getSeg();
+			ind++;
+		}
+		if (aux!=null) return ind;
+		else return -1;
+	}
+	
+	public TADLlistaGenerica<E> getLlista() throws LlistaBuida, LlistaPlena{
+		TADLlistaGenerica<E> aux = new LlistaGenerica<E>();
+		
+		if (esBuida()) throw new LlistaBuida();
+		else {
+			Node<E> nodeNou = null;
+			Node<E> nodeActual = primer;
+			
+			nodeNou=nodeActual.getSeg();
+			while (nodeNou!=null) {
+				aux.inserir(nodeActual.getElement());
+				nodeActual=nodeActual.getSeg();
+				nodeNou=nodeActual.getSeg();
+			}
+		}
+		return aux;
+	}
+	
 	public boolean esBuida() {
 		return primer==null;
 	}
@@ -128,4 +163,5 @@ public class LlistaGenerica<E extends Comparable<E>> implements TADLlistaGeneric
 		IteratorLlistaGenerica<E> elementI=new IteratorLlistaGenerica<E>(this);
 		return elementI;
 	}
+
 }

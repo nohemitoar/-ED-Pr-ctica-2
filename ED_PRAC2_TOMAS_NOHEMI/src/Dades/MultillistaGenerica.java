@@ -1,7 +1,6 @@
 package Dades;
 
-import Llistes.LlistaGenerica;
-import Llistes.LlistaGenericaJava;
+import Llistes.*;
 
 public class MultillistaGenerica<F extends Comparable<F>, C extends Comparable<C>> implements TADMultillistaGenerica<F, C> {
 	
@@ -92,6 +91,50 @@ public class MultillistaGenerica<F extends Comparable<F>, C extends Comparable<C
 			nodeC.setSegF(novaRel);
 			
 			return true;
+		}
+	}
+	
+	public boolean esborrarRelacio(F f, C c) {
+		NodeF<F, C> nodeF = getFila(f);
+		NodeC<F, C> nodeC = getColumna(c);
+		NodeF<F, C> nodeFAnt = null;
+		NodeC<F, C> nodeCAnt = null;
+		
+		if (!existeixRelacio(f, c)) return false;
+		
+		else {
+			if ((nodeF.getElement().compareTo(f)==0) && (nodeC.getElement().compareTo(c)==0)) {
+				nodeF=nodeF.getSeg();
+				nodeC=nodeC.getSeg();
+				return true;
+			} else {
+				nodeFAnt=nodeF;
+				nodeF=nodeFAnt.getSeg();
+				
+				while((nodeF!=null) && (nodeF.getElement().compareTo(f)<=0)) {
+					nodeFAnt=nodeF;
+					nodeF=nodeFAnt.getSeg();
+				}
+				
+				nodeCAnt=nodeC;
+				nodeC=nodeCAnt.getSeg();
+				
+				while((nodeC!=null) && (nodeC.getElement().compareTo(c)<=0)) {
+					nodeCAnt=nodeC;
+					nodeC=nodeCAnt.getSeg();
+				}
+				
+				if (nodeF.getElement().compareTo(f)==0) {
+					nodeFAnt.setSeg(nodeF.getSeg());
+					return true;
+				}
+				
+				if (nodeC.getElement().compareTo(c)==0) {
+					nodeCAnt.setSeg(nodeC.getSeg());
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 	

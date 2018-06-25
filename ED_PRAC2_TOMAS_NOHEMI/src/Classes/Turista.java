@@ -5,7 +5,7 @@ public class Turista implements Comparable<Turista>{
 	private String cognom;
 	private String nom;
 	
-	public Turista (int id, String cognom, String nom) {
+	public Turista (int id, String nom, String cognom) {
 		this.id=id;
 		this.cognom=cognom;
 		this.nom=nom;
@@ -27,6 +27,12 @@ public class Turista implements Comparable<Turista>{
 	public String toString() {
 		return "Turista [id=" + id + ", cognom=" + cognom + ", nom=" + nom + "]";
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return cognom.equals(obj);
+	}
+	
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();

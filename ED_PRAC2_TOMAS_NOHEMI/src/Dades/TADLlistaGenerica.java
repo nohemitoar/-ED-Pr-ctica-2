@@ -33,6 +33,23 @@ public interface TADLlistaGenerica<E> extends Iterable<E> {
 	 * @return element
 	 */
 	public boolean existeixElement (E e);
+	
+	/**
+	 * Metode per saber quin index te un element
+	 * @param e element a buscar
+	 * @return index del element
+	 */
+	public int getIndex(E e);
+	
+	/**
+	 * Metode que serveix per a que retorni la llista
+	 * @param llJava
+	 * @return
+	 * @throws LlistaBuida
+	 * @throws Llistaplena
+	 */
+	public TADLlistaGenerica<E> getLlista() throws LlistaBuida, LlistaPlena;
+	
 	/**
 	 * Metode que serveix per saber si la llista es buida
 	 * @return si es buida o no

@@ -11,19 +11,16 @@ public class LlistaGenericaJava<E> implements TADLlistaGenerica<E>{
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return llista.iterator();
 	}
 
 	@Override
 	public boolean inserir(E e) {
-		// TODO Auto-generated method stub
 		return llista.add(e);
 	}
 
 	@Override
 	public E consultar(int index) throws LlistaBuida {
-		// TODO Auto-generated method stub
 		E aux = null;
 		if (llista.isEmpty()) throw new LlistaBuida();
 		else aux=llista.get(index);
@@ -32,7 +29,6 @@ public class LlistaGenericaJava<E> implements TADLlistaGenerica<E>{
 
 	@Override
 	public boolean esborrarElement(E e) throws LlistaBuida {
-		// TODO Auto-generated method stub
 		boolean esborrat = false;
 		if (llista.isEmpty()) throw new LlistaBuida();
 		else {
@@ -43,21 +39,34 @@ public class LlistaGenericaJava<E> implements TADLlistaGenerica<E>{
 
 	@Override
 	public boolean existeixElement (E e) {
-		// TODO Auto-generated method stub
-		return false;
+		return llista.contains(e);
 	}
 
 	@Override
+	public int getIndex(E e) {
+		int ind=0;
+		ind=llista.indexOf(e);
+		return ind;
+	}
+	
+	public TADLlistaGenerica<E> getLlista() throws LlistaBuida, LlistaPlena{
+		TADLlistaGenerica<E> aux = new LlistaGenericaJava<E>();
+		if(llista.isEmpty()) throw new LlistaBuida();
+		else {
+			for (int i=0; i<llista.size(); i++) {
+				aux.inserir(llista.get(i));
+			}
+			return aux;
+		}
+	}
+	
+	@Override
 	public boolean esBuida() {
-		// TODO Auto-generated method stub
 		return llista.isEmpty();
 	}
 
 	@Override
 	public int getNumEle() {
-		// TODO Auto-generated method stub
 		return llista.size();
 	}
-	
-	
 }

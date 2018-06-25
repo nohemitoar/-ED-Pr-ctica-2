@@ -3,13 +3,20 @@ package Dades;
 import java.util.Iterator;
 
 import Excepcions.LlistaBuida;
-import Llistes.LlistaGenerica;
+import Llistes.*;
 
 public class IteratorLlistaGenerica<E extends Comparable<E>> implements Iterator<E> {
 	private LlistaGenerica<E> ll;
 	private int index;
 	
 	public IteratorLlistaGenerica(LlistaGenerica<E> ll){
+		/*if(llJava) {
+			this.ll= new LlistaGenericaJava<E>();
+			ll=new LlistaGenericaJava<E>();
+		} else {
+			this.ll= new LlistaGenerica<E>();
+			ll=new LlistaGenerica<E>();
+		}*/
 		this.ll=ll;
 		index=0;
 	}
